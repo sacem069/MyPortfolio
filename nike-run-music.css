@@ -1,3 +1,12 @@
+/* ─── FONTS ───────────────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'FuturaCondensed';
+  src: url('assets/fonts/FuturaStd-CondensedExtraBd.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+}
+
 /* ─── CASE STUDY BASE ─────────────────────────────────────────────────────── */
 
 .case-study {
@@ -306,16 +315,13 @@
 .cs-campaign {
   position: relative;
   width: 100%;
-  height: 260px;
   overflow: hidden;
 }
 
 .cs-campaign__img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
-  filter: brightness(0.45);
 }
 
 .cs-campaign__overlay {
@@ -327,11 +333,33 @@
 }
 
 .cs-campaign__label {
-  font-family: var(--font-sans);
-  font-size: clamp(10px, 3vw, 13px);
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  color: rgba(255,255,255,0.9);
+  font-family: 'FuturaCondensed', var(--font-sans);
+  font-size: clamp(20px, 7.5vw, 64px);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.cs-campaign__word {
+  color: #fff;
+}
+
+.cs-campaign__sep,
+.cs-campaign__word--secondary {
+  color: #B2B2B2;
+  opacity: 0.7;
+}
+
+/* ─── FULL-WIDTH SECTION IMAGE ────────────────────────────────────────────── */
+
+.cs-full-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 8px;
 }
 
 /* ─── GENERIC SECTION ─────────────────────────────────────────────────────── */
@@ -402,6 +430,14 @@
   aspect-ratio: 3 / 4;
 }
 
+.cs-photos-row__img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+
 /* ─── COMPETITIVE AUDIT ───────────────────────────────────────────────────── */
 
 .cs-audit {
@@ -470,7 +506,97 @@
   color: rgba(0,0,0,0.2);
 }
 
-/* ─── INTERVIEWS ──────────────────────────────────────────────────────────── */
+/* ─── INTERVIEW GRID + BUBBLES ───────────────────────────────────────────── */
+
+.cs-interviews {
+  padding: 40px 16px 56px;
+}
+
+.cs-interview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.cs-interview-cell {
+  position: relative;
+}
+
+.cs-interview-photo {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+
+/* ── Cells: extra space above/below photo for bubbles ── */
+.cs-interview-grid > :nth-child(1),
+.cs-interview-grid > :nth-child(2) {
+  padding-top: 60px;
+}
+
+.cs-interview-grid > :nth-child(3),
+.cs-interview-grid > :nth-child(4) {
+  padding-bottom: 60px;
+}
+
+/* ── Bubble base ── */
+.cs-bubble {
+  position: absolute;
+  background: rgba(222, 222, 222, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 500;
+  line-height: 1.45;
+  padding: 8px 11px;
+  width: 115px;
+  z-index: 3;
+  /* scroll reveal — start hidden */
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.cs-bubble.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Positions + asymmetric radius (one sharp corner = tail) ── */
+
+/* Top-left: sits in padding-top space, tail at bottom-left points toward photo */
+.cs-bubble--tl {
+  top: 0;
+  left: 6px;
+  border-radius: 14px 14px 14px 0;
+}
+
+/* Top-right: sits in padding-top space, tail at bottom-right points toward photo */
+.cs-bubble--tr {
+  top: 0;
+  right: 6px;
+  border-radius: 14px 14px 0 14px;
+}
+
+/* Bottom-left: sits in padding-bottom space, tail at top-left points toward photo */
+.cs-bubble--bl {
+  bottom: 0;
+  left: 6px;
+  border-radius: 0 14px 14px 14px;
+}
+
+/* Bottom-right: sits in padding-bottom space, tail at top-right points toward photo */
+.cs-bubble--br {
+  bottom: 0;
+  right: 6px;
+  border-radius: 14px 0 14px 14px;
+}
+
+/* ─── INTERVIEWS (old styles — keep for other uses) ───────────────────────── */
 
 .cs-interview-questions {
   display: flex;

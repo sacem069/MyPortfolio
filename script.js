@@ -39,3 +39,28 @@ function updateActiveLink() {
 
 window.addEventListener('scroll', updateActiveLink, { passive: true });
 updateActiveLink();
+
+// Scroll-reveal for interview chat bubbles
+(function () {
+  const bubbles = document.querySelectorAll('[data-bubble]');
+  if (!bubbles.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const delay = el.dataset.bubbleDelay || 0;
+          setTimeout(() => el.classList.add('is-visible'), Number(delay));
+          observer.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  bubbles.forEach((bubble, i) => {
+    bubble.dataset.bubbleDelay = i * 300;
+    observer.observe(bubble);
+  });
+})();

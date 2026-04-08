@@ -16,6 +16,41 @@
   window.addEventListener('resize', fitTitle);
 })();
 
+// Hide nav on scroll down, show on scroll up (case study pages only)
+(function () {
+  if (!document.querySelector('.case-study')) return;
+  const nav = document.querySelector('.nav');
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', function () {
+    const current = window.scrollY;
+    if (current > lastScroll && current > 80) {
+      nav.classList.add('nav--hidden');
+    } else {
+      nav.classList.remove('nav--hidden');
+    }
+    lastScroll = current;
+  }, { passive: true });
+})();
+
+// White nav background when scrolled past hero
+(function () {
+  const nav = document.querySelector('.nav');
+  const hero = document.querySelector('.hero');
+  if (!nav || !hero) return;
+
+  function updateNav() {
+    if (window.scrollY >= hero.offsetHeight - 60) {
+      nav.classList.add('nav--scrolled');
+    } else {
+      nav.classList.remove('nav--scrolled');
+    }
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+})();
+
 // Highlight active nav link based on scroll position
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav__link');

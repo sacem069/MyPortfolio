@@ -88,6 +88,17 @@ img {
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.nav--hidden {
+  transform: translateY(-100%);
+}
+
+.nav--scrolled {
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  transition: background 0.3s ease;
 }
 
 .nav__center {
@@ -168,7 +179,7 @@ img {
 .hero__subtitle {
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: 32px;
+  font-size: 24px;
   color: var(--red);
   line-height: 1;
   margin-bottom: 0;
@@ -193,17 +204,18 @@ img {
   font-family: var(--font-serif);
   font-weight: 100;
   font-style: italic;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--cream);
 }
 
 /* ─── WORK ───────────────────────────────────────────────────────────────── */
 .work {
-  background: linear-gradient(to bottom, var(--bg), var(--bg-work));
+  background: #fff;
   padding: 64px 0 80px;
   display: flex;
   flex-direction: column;
-  gap: 72px;
+  gap: 100px;
+  overflow-x: clip;
 }
 
 .work__heading {
@@ -217,21 +229,22 @@ img {
 
 /* ─── PROJECT CARD ───────────────────────────────────────────────────────── */
 .project {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  width: 100%;
+  gap: 20px;
+  width: 85%;
 }
 
 .project__image {
+  flex: 0 0 52%;
   display: block;
   overflow: hidden;
 }
 
 .project__image img {
   width: 100%;
-  height: 130px;
-  object-fit: cover;
+  height: auto;
   display: block;
   transition: transform 0.4s ease;
 }
@@ -240,95 +253,83 @@ img {
   transform: scale(1.04);
 }
 
-/* image on left */
-.project--img-left .project__image {
-  grid-column: 1;
-  grid-row: 1;
-}
-.project--img-left .project__info {
-  grid-column: 2;
-  grid-row: 1;
-  padding-left: 16px;
-}
-
-/* image on right */
-.project--img-right .project__image {
-  grid-column: 2;
-  grid-row: 1;
-}
-.project--img-right .project__info {
-  grid-column: 1;
-  grid-row: 1;
-}
-.project--img-right .project__info--left {
-  padding-left: 20px;
-  padding-right: 12px;
-  text-align: right;
-}
-
 .project__info {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 0;
 }
 
+.project--img-right .project__info--left {
+  text-align: right;
+}
+
+/* ── Editorial positioning — each card at a different x ── */
+.project:nth-of-type(1) { margin-left: 2%; }
+.project:nth-of-type(2) { margin-left: 20%; }
+.project:nth-of-type(3) { margin-left: 5%; }
+.project:nth-of-type(4) { margin-left: 10%; }
+.project:nth-of-type(5) { margin-left: 11%; }
+
+/* ── Bigger images for Nike Run and The Archive ── */
+.project:nth-of-type(1) .project__image,
+.project:nth-of-type(4) .project__image {
+  flex: 0 0 60%;
+}
+
 .project__year {
   font-family: var(--font-sans);
   font-weight: 350;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--dark);
 }
 
 .project__title {
   font-family: var(--font-sans);
-  font-weight: 400;
-  font-size: 15px;
+  font-weight: 500;
+  font-size: 18px;
   color: var(--dark);
   line-height: 1.3;
+  white-space: nowrap;
 }
 
 .project__category {
   font-family: var(--font-sans);
   font-weight: 300;
-  font-size: 9px;
+  font-size: 11px;
   color: var(--dark);
 }
 
 
 /* ─── ABOUT ──────────────────────────────────────────────────────────────── */
 .about {
-  background-color: var(--bg);
-  padding: 80px 20px 80px;
+  background-color: var(--red);
+  padding: 56px 24px 56px;
   display: flex;
   flex-direction: column;
   gap: 28px;
 }
 
 .about__title {
-  font-family: var(--font-sans);
-  font-weight: 400;
-  font-size: 30px;
-  color: var(--dark);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
-.about__name {
   font-family: var(--font-serif);
   font-weight: 700;
-  color: var(--red);
+  font-size: clamp(38px, 10vw, 56px);
+  color: #fff;
+  text-align: center;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 
 .about__photo {
-  width: 100%;
+  width: 58%;
+  align-self: center;
   overflow: hidden;
 }
 
 .about__photo img {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  object-position: center bottom;
+  height: auto;
   display: block;
 }
 
@@ -336,65 +337,28 @@ img {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  font-family: var(--font-sans);
   font-size: 15px;
+  font-weight: 300;
   line-height: 1.6;
-  color: var(--mid);
-  text-align: justify;
+  color: #fff;
 }
 
-.highlight {
+.about__bold {
+  font-family: var(--font-serif);
   font-weight: 700;
-  color: var(--red);
+  font-style: normal;
+  color: #fff;
 }
 
 .about__cv {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  align-self: flex-end;
+  align-self: flex-start;
   font-family: var(--font-sans);
   font-size: 14px;
-  color: var(--dark);
+  font-weight: 400;
+  color: #fff;
   text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.about__cv-arrow {
-  text-decoration: none;
-  font-size: 16px;
-}
-
-.about__services {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-  padding-top: 20px;
-}
-
-.services__title {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 16px;
-  letter-spacing: 0.04em;
-  color: var(--dark);
-}
-
-.services__list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-}
-
-.services__list li {
-  font-family: var(--font-sans);
-  font-weight: 350;
-  font-size: 13px;
-  letter-spacing: 0.02em;
-  color: var(--dark);
-  line-height: 1.2;
+  text-underline-offset: 4px;
 }
 
 /* ─── CONTACT ────────────────────────────────────────────────────────────── */

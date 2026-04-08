@@ -91,8 +91,11 @@ img {
 }
 
 .nav__center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  gap: 20px;
+  gap: 40px;
 }
 
 .nav__logo {
@@ -112,8 +115,8 @@ img {
 
 .nav__link {
   font-family: var(--font-sans);
-  font-weight: 400;
-  font-size: 11px;
+  font-weight: 600;
+  font-size: 14px;
   color: var(--red);
   letter-spacing: 0.06em;
   white-space: nowrap;
@@ -122,14 +125,15 @@ img {
 .nav__socials {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 }
 
 .nav__icon {
-  width: 14px;
-  height: 14px;
+  width: 17px;
+  height: 17px;
   object-fit: contain;
   display: block;
+  vertical-align: middle;
 }
 
 /* ─── HERO ───────────────────────────────────────────────────────────────── */
@@ -158,15 +162,17 @@ img {
   z-index: 1;
   padding: 0 18px;
   margin-bottom: 8px;
+  text-align: center;
 }
 
 .hero__subtitle {
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: 20px;
+  font-size: 32px;
   color: var(--red);
   line-height: 1;
   margin-bottom: 0;
+  text-align: left;
 }
 
 .hero__name {
@@ -175,7 +181,8 @@ img {
   font-size: clamp(90px, 30vw, 130px);
   color: var(--red);
   line-height: 0.95;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.04em;
+  text-align: center;
 }
 
 .hero__footnote {

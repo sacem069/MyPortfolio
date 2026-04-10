@@ -16,7 +16,7 @@ function initHighlights() {
     el.classList.add('is-highlighted');
   }
 
-  // Separate in-viewport elements from below-the-fold ones
+  // Below-fold elements trigger when they enter the viewport
   const observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
@@ -26,7 +26,7 @@ function initHighlights() {
     });
   }, { threshold: 0.2 });
 
-  // 1000ms delay for elements already in view; observe the rest
+  // 1500ms delay for elements already in view; observe the rest
   setTimeout(function () {
     elements.forEach(function (el) {
       const rect = el.getBoundingClientRect();

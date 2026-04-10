@@ -95,12 +95,12 @@ img {
   left: 0;
   right: 0;
   z-index: 100;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  justify-content: space-between;
   padding: 14px 16px;
   background: var(--cream);
-  border: 1px solid #656565;
+  border: 1.5px solid #656565;
   transition: transform 0.3s ease;
 }
 
@@ -112,29 +112,28 @@ img {
   background: var(--cream);
 }
 
-.nav__center {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-}
-
 .nav__logo {
-  flex: 1;
+  justify-self: start;
   display: flex;
   align-items: center;
 }
 
+.nav__center {
+  justify-self: center;
+  display: flex;
+  gap: 48px;
+}
+
 .nav__dot {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   display: block;
   flex-shrink: 0;
 }
 
 .nav__link {
   font-family: var(--font-sans);
-  font-weight: 400;
+  font-weight: 300;
   font-size: 14px;
   color: #2f2f2f;
   letter-spacing: 0.06em;
@@ -142,19 +141,17 @@ img {
 }
 
 .nav__socials {
-  flex: 1;
+  justify-self: end;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 8px;
+  gap: 12px;
 }
 
 .nav__icon {
-  width: 17px;
-  height: 17px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
   display: block;
-  vertical-align: middle;
 }
 
 /* ─── HERO ───────────────────────────────────────────────────────────────── */
@@ -173,7 +170,7 @@ img {
 .hero__bg {
   position: absolute;
   inset: 0;
-  background-image: url('assets/images/LandingPortfolioMobile.jpg');
+  background-image: url('assets/images/LandingPortfolioMobile.webp');
   background-size: cover;
   background-position: center top;
   z-index: 0;
@@ -258,12 +255,30 @@ img {
 
 /* ─── WORK ───────────────────────────────────────────────────────────────── */
 .work {
+  position: relative;
   background: #fff;
   padding: 64px 0 80px;
   display: flex;
   flex-direction: column;
   gap: 100px;
   overflow-x: clip;
+}
+
+.work::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('assets/images/fondo.jpg');
+  background-size: 100% auto;
+  background-repeat: repeat-y;
+  opacity: 0.6;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.work > * {
+  position: relative;
+  z-index: 1;
 }
 
 .work__heading {

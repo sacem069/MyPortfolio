@@ -1,3 +1,47 @@
+// ─── HIGHLIGHT REVEAL ────────────────────────────────────────────────────────
+function initHighlights() {
+  const elements = document.querySelectorAll('.highlight-reveal');
+  if (!elements.length) return;
+
+  // Inject .highlight-bg span into each element
+  elements.forEach(function (el) {
+    if (!el.querySelector('.highlight-bg')) {
+      const bg = document.createElement('span');
+      bg.className = 'highlight-bg';
+      el.appendChild(bg);
+    }
+  });
+
+  function trigger(el) {
+    el.classList.add('is-highlighted');
+  }
+
+  // Separate in-viewport elements from below-the-fold ones
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        trigger(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  // 1000ms delay for elements already in view; observe the rest
+  setTimeout(function () {
+    elements.forEach(function (el) {
+      const rect = el.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (inView) {
+        trigger(el);
+      } else {
+        observer.observe(el);
+      }
+    });
+  }, 1500);
+}
+
+initHighlights();
+
 // Fit case study title to full screen width
 (function () {
   function fitTitle() {

@@ -129,6 +129,24 @@ function updateActiveLink() {
 window.addEventListener('scroll', updateActiveLink, { passive: true });
 updateActiveLink();
 
+// Auto-scrolling marquee for .cs2-scroll-row
+(function () {
+  const row = document.querySelector('.cs2-scroll-row');
+  if (!row) return;
+
+  // Wrap images in a track div
+  const track = document.createElement('div');
+  track.className = 'cs2-scroll-track';
+  Array.from(row.children).forEach(img => track.appendChild(img));
+
+  // Duplicate all images for seamless loop
+  Array.from(track.children).forEach(img => {
+    track.appendChild(img.cloneNode(true));
+  });
+
+  row.appendChild(track);
+})();
+
 // Scroll-reveal for interview chat bubbles
 (function () {
   const bubbles = document.querySelectorAll('[data-bubble]');

@@ -6,9 +6,15 @@
 /* ─── HERO IMAGE ──────────────────────────────────────────────────────────── */
 
 .cs2-hero {
-  padding-top: 54px; /* clear fixed nav */
   line-height: 0;
   width: 100%;
+}
+
+.cs2-hero img,
+.cs2-section img,
+.cs2-img-placeholder {
+  border: 2px solid #ffffff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.22);
 }
 
 .cs2-hero img {
@@ -34,7 +40,7 @@
   z-index: 0;
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 25px;
+  font-size: 29px;
   letter-spacing: 0.01em;
   color: #fff;
   padding: 3px 8px 5px;
@@ -44,7 +50,7 @@
 
 /* Larger variant for the opening/title label of a page */
 .cs2-label--title {
-  font-size: 28px;
+  font-size: 32px;
 }
 
 /* Override the partial underline height to cover the full label area */
@@ -52,7 +58,13 @@
   height: auto;
   top: 0;
   bottom: 0;
-  border-radius: 2px;
+  border-radius: 0;
+  transform: scaleX(1);
+  transition: none;
+}
+
+.cs2-label {
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 }
 
 /* ─── SUBHEADER ───────────────────────────────────────────────────────────── */
@@ -60,7 +72,7 @@
 .cs2-subheader {
   font-family: var(--font-sans);
   font-weight: 500;
-  font-size: 15px;
+  font-size: 18px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #000;
@@ -73,7 +85,7 @@
 .cs2-body {
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.7;
   color: #363636;
 }
@@ -277,10 +289,41 @@
 /* ─── ZEIKA PAGE ──────────────────────────────────────────────────────────── */
 
 .zeika-page {
-  background-color: #F5F0E8;
+  background-color: #ffffff;
+  position: relative;
 }
 
+.zeika-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('assets/images/fondo.jpg');
+  background-size: 100% auto;
+  background-repeat: repeat-y;
+  opacity: 0.6;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.zeika-page .nav,
+.zeika-page .cs2-hero,
+.zeika-page .cs2-section {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .zeika-page::before {
+    background-image: url('assets/images/fondoDesk.jpg');
+  }
+}
+
+
 /* ─── NIKE PAGE ───────────────────────────────────────────────────────────── */
+
+.nike-page {
+  background-color: #111111;
+}
 
 .nike-page .cs2-hero {
   background-color: #111111;
@@ -300,10 +343,6 @@
 
 .nike-section--dark .cs2-img-placeholder {
   background-color: rgba(255, 255, 255, 0.08);
-}
-
-.nike-section--light {
-  background-color: #F5F0E8;
 }
 
 /* ─── MOBILE (default — single column grids on narrow screens) ────────────── */

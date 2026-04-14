@@ -16,25 +16,35 @@ function initHighlights() {
     el.classList.add('is-highlighted');
   }
 
-  // Below-fold elements trigger when they enter the viewport
+  // Map observed trigger element → highlight element to fire
+  const triggerMap = new Map();
+
   const observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
-        trigger(entry.target);
+        const highlightEl = triggerMap.get(entry.target);
+        if (highlightEl) {
+          const delay = entry.target.classList.contains('work') ? 400 : 0;
+          setTimeout(function () { trigger(highlightEl); }, delay);
+        }
         observer.unobserve(entry.target);
+        triggerMap.delete(entry.target);
       }
     });
-  }, { threshold: 0.2 });
+  }, { threshold: 0.15 });
 
   // 1500ms delay for elements already in view; observe the rest
+  // Elements inside .work are triggered by the section entering view, not the element itself
   setTimeout(function () {
     elements.forEach(function (el) {
-      const rect = el.getBoundingClientRect();
+      const triggerEl = el.closest('.work') || el;
+      const rect = triggerEl.getBoundingClientRect();
       const inView = rect.top < window.innerHeight && rect.bottom > 0;
       if (inView) {
         trigger(el);
       } else {
-        observer.observe(el);
+        triggerMap.set(triggerEl, el);
+        observer.observe(triggerEl);
       }
     });
   }, 1500);

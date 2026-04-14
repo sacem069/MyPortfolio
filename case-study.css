@@ -1,0 +1,319 @@
+/* ─── SHARED CASE STUDY STYLES ────────────────────────────────────────────
+   Used by zeika.html and nike.html
+   Depends on: style.css (font tokens, nav, contact)
+ ─────────────────────────────────────────────────────────────────────────── */
+
+/* ─── HERO IMAGE ──────────────────────────────────────────────────────────── */
+
+.cs2-hero {
+  padding-top: 54px; /* clear fixed nav */
+  line-height: 0;
+  width: 100%;
+}
+
+.cs2-hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ─── SECTION ─────────────────────────────────────────────────────────────── */
+
+.cs2-section {
+  padding: 44px 24px 60px;
+}
+
+/* ─── LABEL ───────────────────────────────────────────────────────────────── */
+/* Capricho text with a full-height #F13A0C background revealed via the
+   .highlight-reveal scroll animation. z-index:0 creates a stacking context
+   so .highlight-bg (z-index:-1) stays behind the white text but above
+   the section background.                                                    */
+
+.cs2-label {
+  /* .highlight-reveal already sets position:relative; display:inline-block  */
+  z-index: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 25px;
+  letter-spacing: 0.01em;
+  color: #fff;
+  padding: 3px 8px 5px;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+/* Larger variant for the opening/title label of a page */
+.cs2-label--title {
+  font-size: 28px;
+}
+
+/* Override the partial underline height to cover the full label area */
+.cs2-label .highlight-bg {
+  height: auto;
+  top: 0;
+  bottom: 0;
+  border-radius: 2px;
+}
+
+/* ─── SUBHEADER ───────────────────────────────────────────────────────────── */
+
+.cs2-subheader {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #000;
+  line-height: 1.35;
+  margin-bottom: 40px;
+}
+
+/* ─── BODY TEXT ───────────────────────────────────────────────────────────── */
+
+.cs2-body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #363636;
+}
+
+/* ─── PHOTO FRAMES (printed-photo look) ──────────────────────────────────── */
+
+.cs2-photo {
+  border: 2px solid #fff;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  line-height: 0;
+}
+
+.cs2-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ─── IMAGE GRIDS ─────────────────────────────────────────────────────────── */
+
+.cs2-grid {
+  margin-top: 40px;
+}
+
+/* 2-col: respects section padding */
+.cs2-grid--2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* 3-col: bleeds to full screen width */
+.cs2-grid--3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-left: -24px;
+  margin-right: -24px;
+}
+
+.cs2-grid--2 .cs2-photo {
+  aspect-ratio: 9 / 11;
+}
+
+.cs2-grid--3 .cs2-photo {
+  aspect-ratio: 3 / 4;
+}
+
+.cs2-img-placeholder {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 1px;
+}
+
+/* ─── HORIZONTAL SCROLL STRIP ─────────────────────────────────────────────── */
+
+.cs2-scroll-strip {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 8px 24px 8px;
+  margin-top: 40px;
+  margin-left: -24px;
+  margin-right: -24px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.cs2-scroll-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.cs2-scroll-item {
+  flex-shrink: 0;
+  width: 82px;
+  height: 106px;
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0.5px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* ─── PHONE MOCKUPS ───────────────────────────────────────────────────────── */
+
+.cs2-phones {
+  display: flex;
+  gap: 20px;
+  margin-top: 40px;
+  justify-content: center;
+}
+
+.cs2-phone {
+  width: 113px;
+  height: 230px;
+  background: #1a1a1a;
+  border-radius: 18px;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+  position: relative;
+}
+
+.cs2-phone__screen {
+  position: absolute;
+  inset: 7px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.cs2-phone__screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ─── BRAND IDENTITY CARD ─────────────────────────────────────────────────── */
+
+.cs2-brand {
+  margin-top: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cs2-brand__row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cs2-brand__logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #528ED6;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cs2-brand__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cs2-brand__name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: #191919;
+}
+
+.cs2-brand__colors {
+  display: flex;
+  gap: 6px;
+}
+
+.cs2-brand__swatch {
+  height: 32px;
+  flex: 1;
+  border-radius: 2px;
+}
+
+.cs2-brand__type {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.45);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ─── STATS / IMPACT IMAGE ─────────────────────────────────────────────────── */
+
+.cs2-stats-img {
+  margin-top: 40px;
+  line-height: 0;
+}
+
+.cs2-stats-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: darken;
+}
+
+.cs2-stats-placeholder {
+  width: 100%;
+  height: 160px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 2px;
+}
+
+/* ─── ZEIKA PAGE ──────────────────────────────────────────────────────────── */
+
+.zeika-page {
+  background-color: #F5F0E8;
+}
+
+/* ─── NIKE PAGE ───────────────────────────────────────────────────────────── */
+
+.nike-page .cs2-hero {
+  background-color: #111111;
+}
+
+.nike-section--dark {
+  background-color: #111111;
+}
+
+.nike-section--dark .cs2-subheader {
+  color: #fff;
+}
+
+.nike-section--dark .cs2-body {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.nike-section--dark .cs2-img-placeholder {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.nike-section--light {
+  background-color: #F5F0E8;
+}
+
+/* ─── MOBILE (default — single column grids on narrow screens) ────────────── */
+
+@media (max-width: 400px) {
+  .cs2-grid--2 {
+    grid-template-columns: 1fr;
+  }
+
+  .cs2-grid--3 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
